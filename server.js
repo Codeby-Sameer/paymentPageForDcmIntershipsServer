@@ -22,7 +22,7 @@ const allowedOrigins = [
   "http://localhost:3000",   // React dev server
   "http://127.0.0.1:3000",   // Alternate localhost
   "http://localhost:5173",   // Vite dev server
-  "https://payment-page-for-dcm-internships.vercel.app" // Production frontend
+  "https://payment-page-for-dcm-internsh-git-639ba0-sams-projects-2c7193c0.vercel.app" // Production frontend
 ];
 
 // Configure CORS
