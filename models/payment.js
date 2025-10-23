@@ -42,9 +42,14 @@ const paymentSchema = new mongoose.Schema({
         required: [true, 'Course is required'],
         trim: true
     },
-    college: {
+    collegeName: {
         type: String,
-        required: [true, 'College is required'],
+        required: [true, 'College Name is required'],
+        trim: true
+    },
+    collegeCode: {
+        type: String,
+        required: [true, 'College code is required'],
         trim: true
     },
     razorpayOrderId: {

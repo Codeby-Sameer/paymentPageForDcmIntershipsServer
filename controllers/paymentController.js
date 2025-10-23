@@ -12,11 +12,11 @@ const razorpay = new Razorpay({
 // Create Razorpay order
 const createOrder = async (req, res) => {
     try {
-        const { name, email, phone, department, semester,program, rollNumber, course, amount,college } = req.body;
+        const { name, email, phone, department, semester,program, rollNumber, course, amount,collegeName,collegeCode } = req.body;
         console.log(req.body)
 
         // Validate required fields
-        if (!name || !email || !phone || !department || !semester || !rollNumber || !course || !program || !amount || !college) {
+        if (!name || !email || !phone || !department || !semester || !rollNumber || !course || !program || !amount || !collegeName || !collegeCode) {
             return res.status(400).json({
                 success: false,
                 message: 'All fields are required'
@@ -26,6 +26,8 @@ const createOrder = async (req, res) => {
       email,
       rollNumber,
       program: program,
+      collegeName,
+      collegeCode,
      status: { $nin: ['created', 'failed'] } // Optional: exclude failed attempts
     });
 
@@ -59,7 +61,8 @@ const createOrder = async (req, res) => {
                 rollNumber,
                 course,
                 program,
-                college
+                collegeName,
+                collegeCode
             }
         };
 
@@ -77,7 +80,8 @@ const createOrder = async (req, res) => {
             course,
             amount,
             program,
-            college,
+            collegeName,
+            collegeCode,
             razorpayOrderId: order.id,
             receipt: options.receipt,
             status: 'created'

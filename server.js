@@ -15,7 +15,29 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors());
+
+
+// Define allowed origins
+const allowedOrigins = [
+  "http://localhost:3000",   // React dev server
+  "http://127.0.0.1:3000",   // Alternate localhost
+  "http://localhost:5173",   // Vite dev server
+  "https://payment-page-for-dcm-internships.vercel.app" // Production frontend
+];
+
+// Configure CORS
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true, // if you need cookies/auth headers
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
